@@ -38,6 +38,28 @@ app.post('/api/genres', function(req, res){
   });
 })
 
+app.put('/api/genres/:_id', function(req, res){
+  var id = req.params._id ; // allows u to access anything that comes through the form
+  var genre = req.body;
+  Genre.updateGenre(id, genre, {}, function(err, genre){
+    if(err){
+      throw err;
+    }
+    res.json(genre);
+  });
+})
+
+app.delete('/api/genres/:_id', function(req, res){
+  var id = req.params._id ; // allows u to access anything that comes through the form
+  Genre.deleteGenre(id, function(err, genre){
+    if(err){
+      throw err;
+    }
+    res.json(genre);
+  });
+})
+
+
 app.get('/api/books', function(req, res){
   Book.getBooks(function(err, books){
     if(err){
@@ -66,6 +88,26 @@ app.post('/api/books', function(req, res){
   });
 })
 
+app.put('/api/books/:_id', function(req, res){
+  var id = req.params._id ; // allows u to access anything that comes through the form
+  var book = req.body;
+  Book.updateBook(id, book, {}, function(err, book){
+    if(err){
+      throw err;
+    }
+    res.json(book);
+  });
+})
+
+app.delete('/api/books/:_id', function(req, res){
+  var id = req.params._id;
+  Book.deleteBook(id, function(err, book){
+    if(err){
+      throw err;
+    }
+    res.json(book)
+  })
+})
 
 
 app.listen(3000);
